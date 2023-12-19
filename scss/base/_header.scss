@@ -1,0 +1,35 @@
+header{
+    background-color: black;
+    opacity: 0.5;
+    z-index: 2;
+    position: relative;
+}
+h1{
+    display: flex;
+    padding-left: 60vh;
+    font-family: 'Cinzel', serif;
+    color: white; 
+    position: relative;
+}
+nav{
+    flex-direction: column;
+}
+#nav{
+    z-index: 2;
+    position: relative;
+}
+#cotizaAhora{
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-image: radial-gradient(circle, #e6a40a 0%, rgb(1, 1, 1) 100%);        
+        color: white;
+        transition: transform 0.3s;
+        a{
+            text-decoration: none;
+            color: white;
+        }
+    }
+    button:hover {
+        transform: scale(1.1);
+    }

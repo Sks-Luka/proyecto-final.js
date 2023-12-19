@@ -1,66 +1,78 @@
-// Crea una variable que almacene el formulario de inicio de sesión
-const formulario = document.getElementById("login-form");
+/*Cotizador de Seguros 3ra pre entrega
+---------------------------------------*/
 
-// Crea una función que guarde los datos del usuario en el localStorage
-function guardarDatos(event) {
-    // Evita que el formulario se envíe por defecto
-    event.preventDefault();
-    // Crea una variable que almacene el valor del campo usuario
-    const usuario = document.getElementById("usuario").value;
-    // Crea una variable que almacene el valor del campo contraseña
-    const contraseña = document.getElementById("contraseña").value;
-    // Guarda el usuario y la contraseña en el localStorage con las claves "usuario" y "contraseña"
-    localStorage.setItem("usuario", usuario);
-    localStorage.setItem("contraseña", contraseña);
-}
+//Creamos el formulario de inicio de sesion!
+//en este caso vamos a hacer que si el usuario pone cualquier email y contraseña pueda acceder directamente.
+//pero en caso de que toque el boton de registrarse tenga que poner sus datos! 
+const INICIO = document.getElementById("sectionPrincipal")
 
-// Crea una función que muestre los datos del usuario en la consola
-function mostrarDatos() {
-    // Obtiene el usuario y la contraseña del localStorage con las claves "usuario" y "contraseña"
-    const usuario = localStorage.getItem("usuario");
-    const contraseña = localStorage.getItem("contraseña");
-    // Muestra el usuario y la contraseña en la consola
-    console.log("Usuario: " + usuario);
-    console.log("Contraseña: " + contraseña);
-}
+;
+// -- El codigo anterior nos tiene que redirigir a " ingreso.html o registro.html"  --//
 
-// Crea una función que valide los datos del usuario y los envíe al servidor
-function validarDatos(event) {
-    // Evita que el formulario se envíe por defecto
-    event.preventDefault();
-    // Crea una variable que almacene el valor del campo usuario
-    const usuario = document.getElementById("usuario").value;
-    // Crea una variable que almacene el valor del campo contraseña
-    const contraseña = document.getElementById("contraseña").value;
-    // Crea una condición que verifique si el usuario y la contraseña son válidos
-    if (usuario == "admin" && contraseña == "1234") {
-        // Muestra una alerta de éxito con sweetAlert
-        Swal.fire({
-            title: "Bienvenido",
-            text: "Has iniciado sesión correctamente",
-            icon: "success"
-        });
-        // Envía el formulario al servidor
-        formulario.submit();
-    } else {
-        // Muestra una alerta de error con sweetAlert
-        Swal.fire({
-            title: "Error",
-            text: "Usuario o contraseña incorrectos",
-            icon: "error"
-        });
-    }
-}
+// creamos le footer desde aca --
+const FOOTER = document.getElementById("pieDePagina")
 
-// Añade un evento que se dispare cuando se envíe el formulario
-formulario.addEventListener("submit", function(event) {
-    // Llama a la función que guarda los datos en el localStorage
-    guardarDatos(event);
-    // Llama a la función que valida los datos
-    validarDatos(event);
-});
-
-// Añade un evento que se dispare cuando se haga clic en el botón de ver
-buttonVer.addEventListener("click", function() {
-    console.log(mostrarDatos()); 
-});
+FOOTER.innerHTML =`
+<div>
+<ul class="listaFooter">
+    <li><p>Franquicias oficiales contactate con @support</p></li>
+    <li><p>Para info en inversiones contactanos! </p></li>
+    <li><p>© Copyright SegurosDev-2023</p></li>
+</ul>
+</div>
+`
+// barra lateral que despliega funciones----//
+let barra = document.getElementById("nav")
+barra.innerHTML =`  
+                    <nav class="navbar bg-body-tertiary">
+                    <div class="container-fluid">
+                    <button><a href="index.html"><img src="../assets/img/icono.ico" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"></a></button>
+                    <button id="cotizaAhora"><a href="./pages/ingreso.html">Cotizar Ahora!</a></button>
+                        <div>
+                            <a class="btn" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">Ingresar</a>
+                            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+                            <div class="offcanvas-header">
+                                <h5 class="offcanvas-title" id="offcanvasExampleLabel">Iniciar Sesion</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                            <div>
+                            <form>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                                <input type="email" id="form2Example1" class="form-control" />
+                                <label class="form-label" for="form2Example1">Ingrese su Email</label>
+                            </div>
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                                <input type="password" id="form2Example2" class="form-control" />
+                                <label class="form-label" for="form2Example2">Ingrese su contraseña</label>
+                            </div>
+                            <!-- 2 column grid layout for inline styling -->
+                            <div class="row mb-4">
+                                <div class="col d-flex justify-content-center">
+                                <!-- Checkbox -->
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                                    <label class="form-check-label" for="form2Example31"> ¿Recordarme? </label>
+                                </div>
+                                </div>
+                                <div class="col">
+                                <!-- Simple link -->
+                                <a href="#!">Olvido su contraseña?</a>
+                                </div>
+                            </div>
+                            <!-- Submit button -->
+                            <button type="button" class="btn btn-primary btn-block mb-4">Ingresar</button>
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                                <p>No eres miembro? <a href="./pages/registro.html">Crear mi cuenta!</a></p>
+                            </div>
+                            </form>
+                            </div>
+                            </div>
+                            </div> 
+                        </div>
+                    </div>
+                    </nav>
+                    `;

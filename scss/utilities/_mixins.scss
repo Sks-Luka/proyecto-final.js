@@ -1,0 +1,7 @@
+@mixin grid ($wid,$heig,$template,$area){
+    display: grid;
+    width: $wid ;
+    height: $heig ;
+    grid-template:$template ;
+    grid-template-areas: $area; 
+}

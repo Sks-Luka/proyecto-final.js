@@ -1,0 +1,18 @@
+#cotizador{
+    display: flex;
+    flex-direction: column;
+
+}
+#card{
+    display: flex;
+    align-content: center;
+    opacity: 0.9;
+    margin-left: 50rem;
+    margin-top: 5rem;
+    padding-left: 5rem;
+}
+#ancla{
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
