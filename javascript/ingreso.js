@@ -1,6 +1,5 @@
 //creamos la interfaz del usuario desde js
 
-/* Creamos las funciones para que el usuario pueda selecionar si quiere cotizar un vehiculo o una casa */
 const FORMULARIO = document.getElementById("cotizador")
 FORMULARIO.innerHTML=`<div id="card">
             <div class="container">
