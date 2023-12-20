@@ -3,44 +3,217 @@
 /* Creamos las funciones para que el usuario pueda selecionar si quiere cotizar un vehiculo o una casa */
 const FORMULARIO = document.getElementById("cotizador")
 FORMULARIO.innerHTML=`<div id="card">
-                    
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                    <div class="card">
-                    <div class="card-body py-5 px-md-5">
-                        <form>
-                        <h2 class="style">ASEGURE SU VEHICULO</h2>
-                        <!-- 2 column grid layout with text inputs for the first and last names -->
-                        <div class="row">
-                            <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <input type="text" id="form3Example1" class="form-control" />
-                                <label class="form-label" for="form3Example1">Ingrese que vehiculo posee</label>
-                            </div>
-                            </div>
-                            <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <input type="text" id="form3Example2" class="form-control" />
-                                <label class="form-label" for="form3Example2"> Su modelo/AÑO</label>
-                            </div>
-                            </div>
-                        </div>
+            <div class="container">
+            <div class="row">
+            <div class="col col-md-8 mr-md-auto ml-md-auto" >
+                <div id="contenido">
+            <p id="parrafo">Cotiza tu seguro de Auto</p>
+            <div class="row contenido-formulario">
+            <div class="col col-md-10 mr-md-auto ml-md-auto">
+            <form action="#" id="cotizar-seguro">
+                <div class="form-group">
+                <label for="marca">Marca:</label>
+                <select class="form-control" id="marca">
+                <option value="">- Seleccionar -</option>
+                <option value="1">Ford</option>
+                <option value="2">Volskwaguen</option>
+                <option value="3">Chevrolet</option>
+                </select>
+                </div>
+                <div class="form-group">
+                <label for="anio">Año:</label>
+                <select class="form-control" id="anio">
+                </select>
+                </div>
+                <fieldset class="form-group">
+                <div class="row">
+                <legend class="col-form-legend col-12">Tipo Seguro</legend>
+                <div class="col12">
+                <div class="form-check">
+                <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="tipo" value="basico" checked>Básico</label>
+                </div>
+                <div class="form-check">
+                <label class="form-check-label">
+                <input class="form-check-input" type="radio" name="tipo" value="completo">Completo</label></div>
+                </div>
+                </div>
+                </fieldset>
+                <div id="cargando">
+                <img src="img/spinner.gif">
+                </div>
+                <div id="resultado"></div>
+                <div class="form-group">
+                <button type="submit" class="btn btn-raised btn-primary">Cotizar</button>
+                <button type="submit" class="btn btn-raised btn-danger"><a href="../index.html">Cancelar</a></button>
+                </div>
+                </form> 
+                </div>
+                </div>
+                </div> <!--contenido-->
+                </div>
+            </div>
+            </div>
+            <p id="mensajeCotizacion"></p>
+        </div>
+`;
 
-                        <div class="col-md-6 mb-4">
-                            <div class="form-outline">
-                                <input type="text" id="form3Example3" class="form-control" />
-                                <label class="form-label" for="form3Example3"> el Kilometrage</label>
-                                <input type="text" id="form3Example4" class="form-control" />
-                                <label class="form-label" for="form3Example4"> La Marca</label>
-                            </div>
-                            </div>
-                        </div>
-                    
+//Le damos funcionalidad a la card anterior
+//constructor
+function Seguro(marca , anio, tipo) 
+{
+    this.marca = marca;
+    this.anio = anio;
+    this.tipo = tipo; 
+}
+//cotizarSeguro
+Seguro.prototype.cotizarSeguro = function () {
+/*
+    1 = americano 1.15
+    2 = asiatico 1.05
+    3 = europeo 1.35        
+*/ 
+
+let cantidad;
+const base = 2000;
+
+switch (this.marca) {
+    case '1':
+        cantidad = base * 1.15;
+        break;
+    case '2':
+        cantidad = base * 1.05;
+        break;
+    case '3':
+        cantidad = base * 1.35;
+        break;
+}
+
+//leer el año
+const diferencia = new Date().getFullYear() - this.anio;
+//cada año de diferencia afeca en 3 %
+cantidad -= ((diferencia*3) * cantidad ) / 100;
+/*
+Si el seguro es Básico * 30% más
+Si el seguro es Completo 50% más
+*/
+if (this.tipo === 'basico') {
+    cantidad *= 1.30;
+} else {
+    cantidad *= 1.50;
+}
+    return cantidad;
+}
+
+//parte visual HTML
+function Interfaz(){}
+
+//Mensaje en HTml
+Interfaz.prototype.mostrarMensaje = function(mensaje, tipo) {
+    const div = document.createElement("div");
+
+if (tipo === 'error') {
+    div.classList.add('mensaje', 'error');
+} else {
+    div.classList.add("mensaje", "correcto");
+}
+
+div.innerHTML = `${mensaje}`;
+formulario.insertBefore(div, document.querySelector(".form-group"));
+
+setTimeout(function() {
+    document.querySelector('.mensaje').remove();
+}, 2000);
+};
+
+//imprime resultado de cotización
+Interfaz.prototype.mostrarResultado = function (seguro, total) {
+const resultado = document.getElementById('resultado');
+let marca;
+
+switch (seguro.marca) {
+    case '1':
+        marca = 'Ford';            
+        break;
+    case '2':
+        marca = 'Volskwaguen';
+        break;
+    case '3':
+        marca = 'Chevrolet';
+        break;    
+}
+
+//crear un div
+const div = document.createElement('div');
+//insertar la información
+div.innerHTML = `
+    <p class="header">Tu resumen:</p>
+    <p>Marca: ${marca}</p>
+    <p> Año: ${seguro.anio}</p>
+    <p>Tipo: ${seguro.tipo}</p>
+    <p>Total: $ ${total}</p>   
+`;
+const spinner = document.querySelector('#cargando img');
+spinner.style.display = 'block';
+    
+setTimeout(function(){
+    spinner.style.display = 'none';
+    resultado.appendChild(div);
+}, 500);      
+}
+
+//capturar datops del formulario
+const formulario = document.getElementById('cotizar-seguro');
+
+formulario.addEventListener('submit', function (e) {
+    e.preventDefault();
+//leer la marca seleccionada
+    const marca = document.getElementById('marca');
+    const marcaSeleccionada = marca.options[marca.selectedIndex].value;
+
+//leer año seleccionado
+    const anio = document.getElementById("anio");
+    const anioSeleccionado = anio.options[anio.selectedIndex].value; 
+
+//leer dato del radio Button
+    const tipo = document.querySelector('input[name="tipo"]:checked').value;
+
+//crear instancia de interfaz
+    const interfaz = new Interfaz();
+//revisamos que los campos no estén vacíos
+
+if (marcaSeleccionada === '' || anioSeleccionado === '' || tipo === '') {
+    //interfaz imprimiendo error
+        interfaz.mostrarMensaje('Faltan Datos, revisa e intenta de nuevo', 'error');
+} else {
+//limpiar resultados anteriores
+    const resultados = document.querySelector('#resultado div');
+    if (resultados != null) {
+            resultados.remove();
+}
+
+        const seguro = new Seguro(marcaSeleccionada, anioSeleccionado, tipo);
+        //Cotizar el seguro
+        const cantidad = seguro.cotizarSeguro(seguro);
+        //mostrar resultado
+        interfaz.mostrarResultado(seguro, cantidad);
+        interfaz.mostrarMensaje('Cotizando', 'correcto');
+
+    }
+
+});
 
 
-                        <!-- Submit button -->
-                        <button type="submit" class="btn btn-success btn-block mb-4">
-                            Asegurar
-                        </button>
-                        <button type="submit" class="btn btn-danger btn-block mb-4"><a id="ancla" href="../index.html">Cancelar</a></button>
-</div>
-`
+
+
+const max = new Date().getFullYear(),
+    min = max - 20;
+
+const  selectAnios = document.getElementById('anio');
+
+for (let i = max; i > min; i--) {
+    let option = document.createElement('option');
+    option.value = i;
+    option.innerHTML = i;
+    selectAnios.appendChild(option);
+}

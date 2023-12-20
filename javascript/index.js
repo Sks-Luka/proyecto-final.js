@@ -63,7 +63,7 @@ barra.innerHTML =`
                                 </div>
                             </div>
                             <!-- Submit button -->
-                            <button type="button" class="btn btn-primary btn-block mb-4">Ingresar</button>
+                            <button type="button" class="btn btn-primary btn-block mb-4"><a id="ancla" href="pages/ingreso.html">Ingresar</a></button>
                             <!-- Register buttons -->
                             <div class="text-center">
                                 <p>No eres miembro? <a href="./pages/registro.html">Crear mi cuenta!</a></p>

@@ -130,6 +130,11 @@ video {
   text-decoration: none;
   color: white; }
 
+#parrafo {
+  font-family: 'Cinzel', serif;
+  color: black;
+  font-size: 1.5625rem; }
+
 .gradient-custom-3 {
   /* fallback for old browsers */
   background: #84fab0;
