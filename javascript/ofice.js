@@ -23,7 +23,7 @@ CARDS.innerHTML = `
                 <h3 class="heading">Seguro de Hogar</h3>
                 <div class="mt-5">
                     <div>
-                        <button type="button" id="btnLogin" class="btn btn-primary btn-block mb-4"><a id="anclabtn" href="../pages/.html"> Quiero cotizar </a></button>
+                        <button type="button" id="btnLogin" class="btn btn-primary btn-block mb-4"><a id="anclabtn" href="../pages/hogar.html"> Quiero cotizar </a></button>
                     </div>
                     <div class="mt-3"> <span class="text1">32 valoraciones positivas almenos 50 usuarios lo recomieandan.</span></span> </div>
                 </div>
@@ -67,7 +67,7 @@ CARDS.innerHTML = `
                 <h3 class="heading">Accidentes Personales</h3>
                 <div class="mt-5">
                     <div>
-                    <button type="button" id="btnLogin" class="btn btn-primary btn-block mb-4">Quiero cotizar</button>
+                    <button type="button" id="btnLogin" class="btn btn-primary btn-block mb-4"><a id="anclabtn" href="../pages/personal.html"> Quiero cotizar </a></button>
                     </div>
                     <div class="mt-3"> <span class="text1">52 valoraciones positivas almenos 86 usuarios lo recomiendan. </span></span> </div>
                 </div>
