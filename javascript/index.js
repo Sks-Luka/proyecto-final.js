@@ -183,7 +183,7 @@ localStorage.setItem("email", EMAIL);
 localStorage.setItem("password", PASSWORD);
 
 // Redirige al usuario a la página de inicio
-window.location.href = "../pages/ofice.html";
+window.location.href = "./pages/ofice.html";
 } else {
     Swal.fire({
         icon: "error",
