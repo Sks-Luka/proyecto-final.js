@@ -1,0 +1,122 @@
+#nombreUser{
+    justify-content: center;
+}
+#pieDePaginaOfice{
+    display: flex;
+    width: 100%;
+    background-color: black;
+    justify-content: center;
+    padding-top: 5rem;
+    z-index: 2;
+    margin-top: 3rem;
+}
+#cardCasa{
+    background-image: linear-gradient(180deg, #ffa152 25%, #ffffff 100%);
+}
+#cardHouse{
+    background-image: linear-gradient(180deg, #52ffeb 25%, #ffffff 100%);
+}
+#personales{
+    background-image: linear-gradient(180deg, #fcff52 25%, #ffffff 100%);
+}
+
+
+.card {
+    border: none;
+    border-radius: 10px
+}
+
+.c-details span {
+    font-weight: 300;
+    font-size: 13px
+}
+
+.badge span {
+    background-color:white;
+    width: 110px;
+    height: 25px;
+    padding-bottom: 3px;
+    border-radius: 5px;
+    display: flex;
+    color: #020200;
+    justify-content: center;
+    align-items: center
+}
+
+.progress {
+    height: 10px;
+    border-radius: 10px
+}
+.text1 {
+    font-size: 14px;
+    font-weight: 600
+}
+
+.text2 {
+    color: #a5aec0
+}
+#noombreUser{
+    color: black;
+}
+
+#second{
+    padding-left: 15rem;
+}
+
+.carding{
+
+    width: 380px;
+    border: none;
+    border-radius: 15px;
+    padding: 8px;
+    background-color: #fff;
+    position: relative;
+    height: 370px;
+}
+
+
+.upper{
+    height: 100px;
+}
+
+.upper img{
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.user{
+    position: relative;
+}
+
+.profile img{
+    height: 80px;
+    width: 80px;
+    margin-top:2px;
+}
+
+.profile{
+    position: absolute;
+    top:-50px;
+    left: 38%;
+    height: 90px;
+    width: 90px;
+    border:3px solid #fff;
+    border-radius: 50%;
+}
+
+.follow{
+    border-radius: 15px;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 35px;
+}
+
+.stats span{
+    font-size: 29px;
+}
+#anclabtn{
+    list-style: none;
+    text-decoration: none;
+    color: #ffffff;
+}

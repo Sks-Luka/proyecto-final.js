@@ -1,0 +1,58 @@
+#formu{
+    padding-left: 8rem;
+    padding-top: 10rem;
+    width: 70vh;
+    position: relative;
+    z-index: 2;
+}
+h1{
+    padding-bottom: 2rem;
+    font-size: 3rem;
+    font-family:'Cinzel','Serif'; 
+    color:white;  
+}
+
+#sectionPrincipal{
+    text-align: justify;
+    display: flex;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    margin-top: 8rem;
+    text-align: center;
+}
+#titulo{
+    color:black;
+    text-align: center;
+    padding-right: 4rem;
+    font-size: 3rem;
+    font-family:'Cinzel','Serif';
+}
+.logoParrafo{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 2rem;
+    padding-top: 1rem;
+    gap:1rem ;
+}
+#carrusel{
+    padding-top: 4rem;
+}
+h5{
+    padding-bottom: 13rem;
+    font-size: 3rem;
+}
+#finalPage{
+    padding-top: 3rem;
+    padding-left: 50vh;
+    color: black;
+    font-size: 3.5rem;
+}
+.card{
+    justify-content: center;
+}
+#btnForm{
+    margin-top: 1rem;
+}
+.card-text{
+    padding-top: 1rem;
+}

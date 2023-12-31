@@ -1,61 +1,75 @@
 //creamos la interfaz del usuario desde js
 
 const FORMULARIO = document.getElementById("cotizador")
-FORMULARIO.innerHTML=`<div id="card">
-            <div class="container">
-            <div class="row">
-            <div class="col col-md-8 mr-md-auto ml-md-auto" >
-                <div id="contenido">
-            <p id="parrafo">Cotiza tu seguro de Auto</p>
-            <div class="row contenido-formulario">
-            <div class="col col-md-10 mr-md-auto ml-md-auto">
-            <form action="#" id="cotizar-seguro">
-                <div class="form-group">
-                <label for="marca">Marca:</label>
-                <select class="form-control" id="marca">
-                <option value="">- Seleccionar -</option>
-                <option value="1">Ford</option>
-                <option value="2">Volskwaguen</option>
-                <option value="3">Chevrolet</option>
-                </select>
-                </div>
-                <div class="form-group">
-                <label for="anio">Año:</label>
-                <select class="form-control" id="anio">
-                </select>
-                </div>
-                <fieldset class="form-group">
-                <div class="row">
-                <legend class="col-form-legend col-12">Tipo Seguro</legend>
-                <div class="col12">
-                <div class="form-check">
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="tipo" value="basico" checked>Básico</label>
-                </div>
-                <div class="form-check">
-                <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="tipo" value="completo">Completo</label></div>
-                </div>
-                </div>
-                </fieldset>
-                <div id="cargando">
-                <img src="img/spinner.gif">
-                </div>
-                <div id="resultado"></div>
-                <div class="form-group">
-                <button type="submit" class="btn btn-raised btn-primary">Cotizar</button>
-                <button type="submit" class="btn btn-raised btn-danger"><a href="../index.html">Cancelar</a></button>
-                </div>
-                </form> 
-                </div>
-                </div>
-                </div> <!--contenido-->
-                </div>
-            </div>
-            </div>
-            <p id="mensajeCotizacion"></p>
-        </div>
+FORMULARIO.innerHTML=`<div id="cotizacionPrincipal">
+                            <form action="#" id="cotizar-seguro">
+                                <div class="form-group">
+                                    <label for="marca"><strong>Seleccione la Marca:</strong></label>
+                                    <select class="form-control" id="marca">
+                                        <option value="">- Seleccionar -</option>
+                                        <option value="1">Ford</option>
+                                        <option value="2">Volskwaguen</option>
+                                        <option value="3">Chevrolet</option>
+                                        <option value="4">Toyota</option>
+                                        <option value="5">Honda</option>
+                                        <option value="6">Nissan</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="tipo"><strong>Seleccione el kilometrage</strong></label>
+                                    <select class="form-control" id="tipo">
+                                        <option value="">- kilometrage del vehiculo-</option>
+                                        <option value="1"> 0 km -</option>
+                                        <option value="2"> 0 a 1.000km -</option>
+                                        <option value="2"> 1.000 a 2.000km -</option>
+                                        <option value="2"> 2.000 a 5000km -</option>
+                                        <option value="2"> 5.000 a 10.000km -</option>
+                                        <option value="2"> 10.000km a 50.000km -</option>
+                                        <option value="2"> 50.000 a 100.000km -</option>
+                                    <select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="anio"><strong>Ingrese el Año:</strong></label>
+                                    <select class="form-control" id="anio">
+                                    </select>
+                                </div>
+                                    <fieldset class="form-group">
+                                    <div class="row">
+                                    <legend class="col-form-legend col-12">Tipo Seguro</legend>
+                                    <div class="col12">
+                                    <div class="form-check">
+                                    <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="tipo" value="basico" checked>Básico</label>
+                                </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                    <input class="form-check-input" type="radio" name="tipo" value="completo">Completo</label></div>
+                                </div>
+                                </div>
+                                </fieldset>
+                                <div id="resultado"></div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-raised btn-primary">Cotizar</button>
+                                    <button type="submit" class="btn btn-raised btn-danger"><a id="btnIngreso" href="../pages/ofice.html">Cancelar</a></button>
+                                </div>
+                                </form> 
+                        </div>
 `;
+
+
+//creamos el footer
+
+const FOOTER = document.getElementById("pieDePaginaIngreso")
+
+FOOTER.innerHTML =`
+<div>
+<ul class="listaFooter">
+    <li><p>Franquicias oficiales contactate con @support</p></li>
+    <li><p>Para info en inversiones contactanos! </p></li>
+    <li><p>© Copyright SegurosDev-2023</p></li>
+</ul>
+</div>
+`
 
 //Le damos funcionalidad a la card anterior
 //constructor
@@ -67,13 +81,9 @@ function Seguro(marca , anio, tipo)
 }
 //cotizarSeguro
 Seguro.prototype.cotizarSeguro = function () {
-/*
-    1 = americano 1.15
-    2 = asiatico 1.05
-    3 = europeo 1.35        
-*/ 
 
 let cantidad;
+
 const base = 2000;
 
 switch (this.marca) {
@@ -86,16 +96,28 @@ switch (this.marca) {
     case '3':
         cantidad = base * 1.35;
         break;
+    case '4':
+        cantidad = base * 1.50;
+    case '5':
+        cantidad = base * 1.70;
+    case '6':
+        cantidad = base * 2;
 }
 
 //leer el año
+
 const diferencia = new Date().getFullYear() - this.anio;
+
 //cada año de diferencia afeca en 3 %
+
 cantidad -= ((diferencia*3) * cantidad ) / 100;
+
 /*
 Si el seguro es Básico * 30% más
 Si el seguro es Completo 50% más
 */
+
+
 if (this.tipo === 'basico') {
     cantidad *= 1.30;
 } else {
@@ -126,7 +148,7 @@ setTimeout(function() {
 };
 
 //imprime resultado de cotización
-Interfaz.prototype.mostrarResultado = function (seguro, total) {
+Interfaz.prototype.mostrarResultado = function (seguro,total ) {
 const resultado = document.getElementById('resultado');
 let marca;
 
@@ -139,26 +161,42 @@ switch (seguro.marca) {
         break;
     case '3':
         marca = 'Chevrolet';
-        break;    
+        break;
+    case '4':
+        marca = 'toyota';
+    case '5':
+        marca = 'Honda';
+    case '6':
+        marca ='Nissan';
 }
 
 //crear un div
+
 const div = document.createElement('div');
-//insertar la información
-div.innerHTML = `
-    <p class="header">Tu resumen:</p>
-    <p>Marca: ${marca}</p>
-    <p> Año: ${seguro.anio}</p>
-    <p>Tipo: ${seguro.tipo}</p>
-    <p>Total: $ ${total}</p>   
-`;
-const spinner = document.querySelector('#cargando img');
-spinner.style.display = 'block';
-    
-setTimeout(function(){
-    spinner.style.display = 'none';
-    resultado.appendChild(div);
-}, 500);      
+
+//insertar la información lo mostramos mediante la libreria de Sweet Alert :)
+div.innerHTML = Swal.fire({
+    title: "<strong>Su cotizacion <u> Oficial</u></strong>",
+    icon: "success",
+    html: `
+    <div class="card">
+        <p class="header">Tu resumen:</p>
+        <p>Marca: ${marca}</p>
+        <p> Año: ${seguro.anio}</p>
+        <p>Tipo: ${seguro.tipo}</p>
+        <p>Total: $ ${total}</p> 
+    </div>
+    `,
+    showCloseButton: true,
+    showCancelButton: true,
+    focusConfirm: false,
+    confirmButtonText: `
+        <i class="fa fa-thumbs-up"></i> Realizado!
+    `,
+    confirmButtonAriaLabel: "Thumbs up, great!",
+    cancelButtonText: "No, cancelar!",
+    cancelButton: "btn btn-danger"
+});
 }
 
 //capturar datops del formulario
@@ -166,6 +204,7 @@ const formulario = document.getElementById('cotizar-seguro');
 
 formulario.addEventListener('submit', function (e) {
     e.preventDefault();
+
 //leer la marca seleccionada
     const marca = document.getElementById('marca');
     const marcaSeleccionada = marca.options[marca.selectedIndex].value;
@@ -181,7 +220,7 @@ formulario.addEventListener('submit', function (e) {
     const interfaz = new Interfaz();
 //revisamos que los campos no estén vacíos
 
-if (marcaSeleccionada === '' || anioSeleccionado === '' || tipo === '') {
+if (marcaSeleccionada === '' || anioSeleccionado === '') {
     //interfaz imprimiendo error
         interfaz.mostrarMensaje('Faltan Datos, revisa e intenta de nuevo', 'error');
 } else {
@@ -191,18 +230,14 @@ if (marcaSeleccionada === '' || anioSeleccionado === '' || tipo === '') {
             resultados.remove();
 }
 
-        const seguro = new Seguro(marcaSeleccionada, anioSeleccionado, tipo);
-        //Cotizar el seguro
-        const cantidad = seguro.cotizarSeguro(seguro);
-        //mostrar resultado
-        interfaz.mostrarResultado(seguro, cantidad);
-        interfaz.mostrarMensaje('Cotizando', 'correcto');
-
-    }
-
+const seguro = new Seguro(marcaSeleccionada, anioSeleccionado,);
+//Cotizar el seguro
+    const cantidad = seguro.cotizarSeguro(seguro);
+//mostrar resultado
+    interfaz.mostrarResultado(seguro, cantidad);
+    interfaz.mostrarMensaje('Cotizando', 'correcto');
+}
 });
-
-
 
 
 const max = new Date().getFullYear(),
